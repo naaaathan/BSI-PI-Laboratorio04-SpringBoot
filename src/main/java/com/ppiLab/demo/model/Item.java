@@ -1,9 +1,17 @@
 package com.ppiLab.demo.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import java.util.Date;
+
 public class Item {
 
     private long id;
 
+    @Min(value = 10)
+    @Max(value = 999)
     private int quantity;
 
     private long price;
@@ -11,6 +19,9 @@ public class Item {
     private String name;
 
     private String description;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date date;
 
     public long getId() {
         return id;
@@ -44,6 +55,15 @@ public class Item {
         this.name = name;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+
     public String getDescription() {
         return description;
     }
@@ -51,6 +71,7 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     @Override
     public String toString() {
@@ -60,6 +81,7 @@ public class Item {
                 ", price=" + price +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", date=" + date +
                 '}';
     }
 }
