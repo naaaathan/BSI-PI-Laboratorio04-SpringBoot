@@ -2,13 +2,17 @@ package com.ppiLab.demo.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.Date;
 
+@Entity
 public class Item {
 
-    private long id;
+    private @Id @GeneratedValue Long id;
 
     @Min(value = 10)
     @Max(value = 999)
@@ -23,9 +27,17 @@ public class Item {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date date;
 
-    public long getId() {
-        return id;
+    public Item() {
     }
+
+    public Item(int quantity, long price, String name, String description, Date date) {
+        this.quantity = quantity;
+        this.price = price;
+        this.name = name;
+        this.description = description;
+        this.date = date;
+    }
+
 
     public void setId(long id) {
         this.id = id;
